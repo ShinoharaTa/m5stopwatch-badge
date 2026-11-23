@@ -1,0 +1,7 @@
+.pio/
+data/
+config.yaml
+inbox/
+.DS_Store
+.vscode/
+.venv/

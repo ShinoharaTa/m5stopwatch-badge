@@ -1,0 +1,56 @@
+# config.yaml の例。人が編集するのはこのファイルだけ。
+# tools/build_assets.py がこれを data/config.json と画像ファイルに変換し、
+# pio run -t uploadfs で本体の LittleFS に書き込む。
+# 実際に使うものは config.yaml にコピーして編集する(config.yaml はコミットしない)。
+
+device:
+  brightness: 120          # 通常時の輝度 0-255(AMOLED のパネル輝度)
+  qr_brightness: 255       # QR 表示中の輝度
+  dim_after_sec: 20        # 無操作でこの秒数たったら減光
+  off_after_sec: 30        # 無操作でこの秒数たったら画面 OFF
+  standby_after_min: 5     # 画面 OFF からこの分数でスタンバイ(ディープスリープ、0 で無効)
+  qr_timeout_sec: 60       # QR を閉じ忘れたとき Badge に戻る秒数
+  wake_on_wrist: true      # BMI270 の手首装着検知で点灯(動かなければ false)
+  pixel_shift: true        # 焼き付き対策のピクセルシフト
+  flip: true               # 画面の向き。true = 首掛け(本体を 180° 回した向き、ボタンが下側)、false = 手持ち(ボタンが上側)。本体の KEYA 長押しでも切替
+  event_mode:
+    enabled: false         # true で常時表示(黒背景・低輝度)。450mAh で 8〜9 時間の見込み
+    brightness: 40
+
+profiles:
+  - id: shino3                           # 英小文字・数字・_・- のみ。画像のファイル名にも使う
+    name: shino3                         # Badge 画面に出す表示名(日本語可)
+    avatar: assets/avatar-shino3.jpg     # 変換時に円形(既定 280x280)の JPEG にする。PNG / JPEG / SVG
+    # avatar_size: 280                   # 一辺 px。画面の中心に置き、外側に輪とボタン表示が付く
+    # avatar_fit: cover                  # cover=中央を円で切り抜く / contain=全体を余白付きで収める
+    links:
+      - kind: x
+        url: https://x.com/SHINOHARATTT
+      - kind: bluesky
+        url: https://bsky.app/profile/shino3.net
+      - kind: github
+        url: https://github.com/ShinoharaTa
+      - kind: nostr
+        # 一般向けは https の Web ゲートウェイ(本人サイトと同じ nostx.io)。Nostr ユーザー向けなら nostr:npub1… に変える
+        url: https://nostx.io/npub1l60d6h2uvdwa9yq0r7r2suhgrnsadcst6nsx2j03xwhxhu2cjyascejxe5
+      - kind: instagram
+        url: https://www.instagram.com/shinoharattt/
+      - kind: threads
+        url: https://www.threads.com/@shinoharattt
+      - kind: web                      # kind はアイコンと既定ラベルを引くキー。未知の値は汎用扱い
+        label: shino3.net                # QR の下に出す文字。省略時は URL から scheme と www. を落としたもの
+        url: https://shino3.net
+
+  - id: 428lab
+    name: 四谷ラボ
+    avatar: assets/428lab-icon.svg       # SVG は rsvg-convert で PNG 化してから円形にする
+    links:
+      - kind: x
+        url: https://x.com/lab_428
+      - kind: bluesky
+        url: https://bsky.app/profile/428lab.net
+      - kind: github
+        url: https://github.com/428lab
+      - kind: web
+        label: 428lab.net
+        url: https://428lab.net
