@@ -67,3 +67,9 @@ Settings の項目: 画面の向き、輝度、イベントモード、イベン
 - `src/app_config.*`: `data/config.json` の読み込み(ArduinoJson)
 - `tools/build_assets.py`: `config.yaml` → `data/`(アバターは円形 280px、黒背景)
 - `docs/design/`: 画面デザイン案(A / B / C)とモック生成スクリプト
+
+## ライセンス
+
+ソースコードとドキュメントは [MIT License](LICENSE)。
+
+`assets/` の画像(アバターと四谷ラボのロゴ)と、それを使った `docs/design/` のモック画像は MIT の対象外。自分の名刺にするときは `config.yaml` で自分の画像に差し替える。
